@@ -10,11 +10,11 @@ pro test_fe18calc
 
   ; Fe18 = 94A  - 171A/450. - 211A/120.
 
-    ; Work out resp without any time_dependendt changes
-    ; Units of DM cm^5 s^-1 px^-1
-    t0=aia_get_response(/temperature,/dn,/eve)
-    save,file='tr0.dat',t0
-  restore,file='tr0.dat'
+  ; Work out resp without any time_dependendt changes
+  ; Units of DM cm^5 s^-1 px^-1
+  ;    t0=aia_get_response(/temperature,/dn,/eve)
+  ;    save,file='tr0.dat',t0
+    restore,file='tr0.dat'
 
   ids=[0,2,4]
   tr0=t0.all[*,ids]
@@ -70,7 +70,8 @@ pro test_fe18calc
 
 
   emts=fe18/trfe18
-  emt0=fe180/fetr0[idt]
+  ;  emt0=fe180/fetr0[idt]
+  emt0=fe180/10d^(interpol(alog10(fetr0),logt,logt2))
   ; Then plot the resulting EM you would calculate from this
   utplot,ctims,emts,yrange=[3e27,6e27],ystyle=17
   outplot,anytim(minmax(anytim(ctims)),/yoh),[1,1]*emt0
@@ -81,7 +82,7 @@ pro test_fe18calc
   utplot,ctims,emt0/emts,yrange=[0.7,1.3],ystyle=17,xstyle=17,psym=3,$
     ytitle='Fe18 EM_{data_cor} / EM_{tr_cor} @ logT=6.85',xtimer=['01-May-2010','01-May-2020']
   outplot,anytim(minmax(anytim(ctims)),/yoh),[1,1],lines=2,color=10
-  
+
 
 
 
