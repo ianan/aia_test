@@ -1,4 +1,4 @@
-function calc_fe18, d=d, t=t,notime=notime
+function calc_fe18, d=d, t=t,notime=notime,version=version
 
   ; Function to estimate the Fe18 emission from SDO/AIA data using the
   ; approach of Del Zanna (2013), https://doi.org/10.1051/0004-6361/201321653
@@ -13,13 +13,15 @@ function calc_fe18, d=d, t=t,notime=notime
   ; If no data provide will return correction factors and print to screen the factors
   ;
   ; 26-May-2020 IGH
+  ; 20-Jul-202- IGH Updated for v9 ssw degradation - but aia_get_response not updated yet so need < 9
 
   res=-1
+  if (n_elements(version) ne 1) then version=8
   if n_elements(notime) eq 0 then begin
     if (n_elements(t) ne 1) then t='09-Sep-2018 12:00'
 
     ids=[0,2,4]
-    corr_euv = aia_bp_get_corrections(version=8)
+    corr_euv = aia_bp_get_corrections(version=version)
 
     dtims=abs(anytim(corr_euv.utc)-anytim(t))
     tid=(where(dtims eq min(dtims)))[0]
