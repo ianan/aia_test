@@ -45,7 +45,7 @@ pro test_fe18calc
   fe180=g0[0] - g0[1]/450. - g0[2]/120.
 
   ; Load in the correction factors
-  corr_euv = aia_bp_get_corrections(version=8)
+  corr_euv = aia_bp_get_corrections(version=9)
   ctims=corr_euv.utc
   cf=corr_euv.ea_over_ea0[*,ids]
 
@@ -79,7 +79,7 @@ pro test_fe18calc
   clearplot
   !p.multi=0
   !p.charsize=1.2
-  utplot,ctims,emt0/emts,yrange=[0.7,1.3],ystyle=17,xstyle=17,psym=3,$
+  utplot,ctims,emt0/emts,yrange=[0.5,1.3],ystyle=17,xstyle=17,psym=3,$
     ytitle='Fe18 EM_{data_cor} / EM_{tr_cor} @ logT=6.85',xtimer=['01-May-2010','01-May-2020']
   outplot,anytim(minmax(anytim(ctims)),/yoh),[1,1],lines=2,color=10
 
