@@ -32,7 +32,7 @@ function calc_fe18, d=d, t=t,notime=notime,version=version,show=show
     ;    Just in case you don't want any time corrections
     cf=[1,1,1]
   endelse
-  if (keyword_set(show) eq 1) then print,cf
+  if (keyword_set(show) eq 1) then print,reform(cf)
 
   ; Fe18 factors from Del Zanna (2013)
   dzf=[1,-1/450.,-1/120.]
