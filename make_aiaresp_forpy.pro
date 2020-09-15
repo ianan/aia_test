@@ -31,6 +31,14 @@ pro make_aiaresp_forpy
   save,file='aia_trespv9_en20140101.dat',channels,logt,tr,units
 
 
+  trespe=aia_get_response(/temp,/dn,/eve,version=8)
+  channels=trespe.channels[ids]
+  logt=trespe.logte
+  tr=trespe.all[*,ids]
+  units=trespe.units
+  save,file='aia_trespv8_en.dat',channels,logt,tr,units
+
+
   stop
   ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
