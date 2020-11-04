@@ -13,10 +13,11 @@ function calc_fe18, d=d, t=t,notime=notime,version=version,show=show
   ; If no data provide will return correction factors and print to screen the factors
   ;
   ; 26-May-2020 IGH
-  ; 20-Jul-202- IGH Updated for v9 ssw degradation
+  ; 20-Jul-2020 IGH Updated for v9 ssw degradation
+  ; 04-Nov-2020 IGH Updated for v10, now default
 
   res=-1
-  if (n_elements(version) ne 1) then version=9
+  if (n_elements(version) ne 1) then version=10
   if n_elements(notime) eq 0 then begin
     if (n_elements(t) ne 1) then t='09-Sep-2018 12:00'
 
